@@ -4,6 +4,7 @@ function Test() {
   return (
     <div className="container">
       <h1>TEST 페이지</h1>
+      <p>로그인 후 보이는 화면입니다.</p>
       <div className="buttons">
         <button
           className="btn"
