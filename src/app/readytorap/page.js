@@ -9,9 +9,10 @@ import { useRouter } from "next/navigation";
 export default function StartRapScreen() {
     const router = useRouter();
   return (
-    <div className="bg-[#ffeddf] flex flex-col items-center justify-between min-h-screen bg-peach px-6 py-8">
+    <div className="bg-[#ffeddf] flex flex-col items-center justify-between min-h-screen bg-peach px-6 py-0">
+            <div className="w-[390px] h-[744px] flex flex-col justify-between px-6 py-8 bg-[#ffeddf]">
       <div className="w-full flex items-center justify-between">
-        <ArrowLeft className="text-orange-500" />
+        <ArrowLeft className="text-orange-500 cursor-pointer" onClick={() => router.back()} />
         <h1 className="text-orange-500 font-bold text-lg">Dynamite <span className="font-medium text-muted-foreground">BTS</span></h1>
         <div className="w-6" /> {/* Placeholder for alignment */}
       </div>
@@ -38,6 +39,7 @@ export default function StartRapScreen() {
       <Button onClick={() => router.push("/startrap")} className="w-full max-w-md text-lg py-6 rounded-full bg-orange-400 hover:bg-orange-500">
         START!!
       </Button>
+    </div>
     </div>
   );
 }
