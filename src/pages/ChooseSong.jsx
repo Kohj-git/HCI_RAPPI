@@ -11,6 +11,13 @@ import PauseBtn from "@/assets/button/pausebtn.svg";
 
 import Dynamite from "@/assets/audio/BTS-Dynamite.mp3";
 
+const songs = [
+  { id: 1, title: "Dynamite", artist: "BTS", description: "A slow ballad perfect for beginners.", src: Dynamite },
+  { id: 2, title: "Here with me", artist: "d4vid", description: "A slow ballad perfect for beginners.", scr:null},
+  { id: 3, title: "My universe", artist: "Coldplay", description: "A slow ballad perfect for beginners.", scr:null},
+  { id: 4, title: "Best song ever", artist: "One Direction", description: "A slow ballad perfect for beginners.", scr:null},
+];
+
 export default function ChooseSong() {
   const navigate = useNavigate();
   // const audioRef = React.useRef<HTMLAudioElement | null>(null);
@@ -55,12 +62,7 @@ export default function ChooseSong() {
     }
   };
 
-  const songs = [
-    { id: 1, title: "Dynamite", artist: "BTS", description: "A slow ballad perfect for beginners.", src: Dynamite },
-    { id: 2, title: "Here with me", artist: "d4vid", description: "A slow ballad perfect for beginners.", scr:null},
-    { id: 3, title: "My universe", artist: "Coldplay", description: "A slow ballad perfect for beginners.", scr:null},
-    { id: 4, title: "Best song ever", artist: "One Direction", description: "A slow ballad perfect for beginners.", scr:null},
-  ];
+
 
   return (
     <div className="relative w-full max-w-[390px] h-[844px] bg-white mx-auto">

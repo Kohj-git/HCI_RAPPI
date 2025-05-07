@@ -6,9 +6,8 @@ import { useNavigate } from "react-router-dom";
 
 import RappiLogo from "@/assets/icons/rappi-logo.svg";
 
-import EllipseWhite from "@/assets/ellipse-white.svg";
-import EllipseOrange from "@/assets/ellipse-orange.svg";
-import Carrot from "@/assets/carrot.svg";
+import Ellipse from "@/assets/ellipse.svg";
+import Carrot from "@/assets/three-carrot.svg";
 
 const MainPage = () => {
   const navigate = useNavigate();
@@ -17,13 +16,6 @@ const MainPage = () => {
   const statusBarData = {
     time: "9:41",
   };
-
-  const carrotConfig = [
-    { id: 1, rotation: "0deg", className: "transform -translate-y-2" },
-    { id: 2, rotation: "29.25deg", className: "" },
-    { id: 3, rotation: "59.23deg", className: "transform -translate-y-1" },
-  ];
-
 
   return (
     <div className="w-full h-screen bg-[#ffa55d33] overflow-hidden">
@@ -52,26 +44,10 @@ const MainPage = () => {
 
         {/* Main Content */}
         <div className="flex flex-col items-center justify-center mt-16">
-          {/* Orange Border Circle */}
-          {/* <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] rounded-full border-2 border-[#ffa55d]"></div> */}
-          
-          {/* White Background Circle */}
-          {/* <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[346px] h-[346px] rounded-full bg-white"></div> */}
-          
-          {/* Orange Circle (Background/Shadow) */}
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px]">
             <img 
-              src={EllipseOrange} 
-              alt="Orange Circle" 
-              className="w-full h-full object-cover"
-            />
-          </div>
-          
-          {/* White Circle (Foreground) */}
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[346px] h-[346px]">
-            <img 
-              src={EllipseWhite} 
-              alt="White Circle" 
+              src={Ellipse} 
+              alt="Circle" 
               className="w-full h-full object-cover"
             />
           </div>
@@ -86,19 +62,7 @@ const MainPage = () => {
                 </h1>
               </div>
               <div className="flex items-end justify-center gap-4 mt-8">
-                {carrotConfig.map((carrot) => (
-                  <div
-                    key={carrot.id}
-                    className={`relative w-12 h-16 ${carrot.className}`}
-                    style={{ transform: `rotate(${carrot.rotation})` }}
-                  >
-                    <img 
-                      src={Carrot} 
-                      alt="Carrot" 
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                ))}
+              <img src={Carrot} alt="Three Carrot" className="h-10 w-[71px]" />
               </div>
             </CardContent>
           </Card>
