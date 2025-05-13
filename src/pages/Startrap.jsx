@@ -19,7 +19,7 @@ const lyrics = [
 const timings = [0, 2, 4.5, 6, 9, 13, 15]; // 각 가사가 시작되는 시간 (초)
 
 export default function LyricsPage() {
-  const router = useRouter();
+  const navigate = useNavigate();
   const [currentLine, setCurrentLine] = useState(0);
   const audioRef = useRef(null);
 
@@ -88,6 +88,8 @@ export default function LyricsPage() {
         </div>
       </div>
 
+      
+
       {/* 오디오 플레이어 */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
         <audio ref={audioRef} controls>
@@ -95,6 +97,10 @@ export default function LyricsPage() {
           Your browser does not support the audio element.
         </audio>
       </div>
+
+      <Button onClick={() => navigate("/result")} className="w-full max-w-md text-lg py-6 rounded-full bg-orange-400 hover:bg-orange-500">
+              Complete!
+            </Button>
     </div>
   );
 }

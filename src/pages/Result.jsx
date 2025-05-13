@@ -4,6 +4,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+
 
 import LineCarrot from "@/assets/line-carrot.svg"
 import ShadowCarrot from "@/assets/shadow-carrot.svg";
@@ -19,6 +21,7 @@ const wordPairs = [
 
 
 export default function Result() {
+    const navigate = useNavigate();
     const [showSheet, setShowSheet] = useState(false);
     const [pairs, setPairs] = useState(wordPairs);
 
@@ -98,7 +101,7 @@ export default function Result() {
 
         {/* Bottom Button */}
         <div className="flex justify-center mt-auto mb-[36px]">
-          <Button className="w-[309px] h-[63px] bg-[#ffa55d] hover:bg-[#ff9a4a] rounded-[50px] text-white text-[22px] font-extrabold shadow">
+          <Button onClick={() => navigate("/choose-level")} className="w-[309px] h-[63px] bg-[#ffa55d] hover:bg-[#ff9a4a] rounded-[50px] text-white text-[22px] font-extrabold shadow">
             Pick another song
           </Button>
         </div>

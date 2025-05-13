@@ -143,7 +143,7 @@ export default function ChooseSong() {
       <div className="absolute bottom-[50px] left-0 right-0 px-5">
         <Button
           className="w-full h-[63px] bg-[#ffa55d] hover:bg-[#ff9540] rounded-[50px]"
-          onClick={() => navigate("/next-step")} // 라우팅 대상에 따라 수정 필요
+          onClick={() => navigate("/readytolearn-word")} // 라우팅 대상에 따라 수정 필요
         >
           <span className="font-extrabold text-white text-[21px] tracking-[-0.30px] leading-5">SELECT</span>
         </Button>

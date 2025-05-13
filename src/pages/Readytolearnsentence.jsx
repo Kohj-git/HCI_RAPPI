@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 export default function ReadyToLearnSentence() {
-    const router = useRouter();
+  const navigate = useNavigate();
   return (
     <div className="bg-[#ffeddf] flex flex-col items-center justify-between min-h-screen bg-peach px-6 py-0">
             <div className="w-[390px] h-[744px] flex flex-col justify-between px-6 py-8 bg-[#ffeddf]">
@@ -36,7 +36,7 @@ export default function ReadyToLearnSentence() {
         </div>
       </div>
 
-      <Button onClick={() => router.push("/learnsentence")} className="w-full max-w-md text-lg py-6 rounded-full bg-orange-400 hover:bg-orange-500">
+      <Button onClick={() => navigate("/learn-sentence")} className="w-full max-w-md text-lg py-6 rounded-full bg-orange-400 hover:bg-orange-500">
         START!!
       </Button>
     </div>

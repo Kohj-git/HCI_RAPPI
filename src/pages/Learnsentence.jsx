@@ -7,7 +7,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function LearnSentence() {
-  const router = useRouter();
+  const navigate = useNavigate();
 
   // 문장 리스트
   const sentences = [
@@ -56,7 +56,7 @@ export default function LearnSentence() {
     if (currentIndex < sentences.length - 1) {
       setCurrentIndex(currentIndex + 1);
     } else {
-      router.push("/readytorap");
+      navigate("/readyto-rap");
     }
   };
 
