@@ -9,49 +9,53 @@ import { useNavigate } from "react-router-dom";
 export default function LearnSentence() {
   const navigate = useNavigate();
 
-  // 문장 리스트
   const sentences = [
     {
       english: "get up (in the morning).",
       korean: "(아침에) 일어나다.",
+      ipa: "[ɡɛt ʌp ɪn ðə ˈmɔːrnɪŋ]",
       feedback: "Great job!",
     },
     {
       english: "Let's rock and roll!",
       korean: "자 신나게 시작하자.",
+      ipa: "[lɛts rɑk ənd roʊl]",
       feedback: "Awesome!",
     },
     {
       english: "Kick the drum",
       korean: "(비유 표현) 분위기를 띄우다",
+      ipa: "[kɪk ðə drʌm]",
       feedback: "Keep it up!",
     },
     {
       english: "rolling on like a rolling stone",
       korean: "계속해서 나아간다",
+      ipa: "[ˈroʊlɪŋ ɑn laɪk ə ˈroʊlɪŋ stoʊn]",
       feedback: "Cool~~",
     },
     {
       english: "Call me on my phone",
       korean: "내 휴대폰으로 전화해",
+      ipa: "[kɔːl mi ɑn maɪ foʊn]",
       feedback: "Great!",
     },
     {
       english: "Life is sweet as honey",
       korean: "인생은 꿀처럼 달콤해",
+      ipa: "[laɪf ɪz swiːt æz ˈhʌni]",
       feedback: "Very good",
     },
     {
       english: "I'm good to go",
       korean: "나 이제 갈 준비 됐어",
+      ipa: "[aɪm ɡʊd tə ɡoʊ]",
       feedback: "Awesome",
     },
   ];
 
-  // 현재 문장 인덱스
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // 다음 문장으로 이동
   const handleNext = () => {
     if (currentIndex < sentences.length - 1) {
       setCurrentIndex(currentIndex + 1);
@@ -60,22 +64,27 @@ export default function LearnSentence() {
     }
   };
 
-  // 현재 문장 데이터
   const currentSentence = sentences[currentIndex];
 
   return (
     <div className="bg-[#ffeddf] flex flex-row justify-center w-full min-h-screen">
       <div className="bg-[#ffeddf] w-[390px] h-[744px] relative">
         {/* Header */}
-                <div className="w-full flex items-center justify-between px-4 py-3">
-                  <Button variant="ghost" size="icon" onClick={() => router.back()} className="p-0 h-auto">
-                    <ArrowLeft className="w-5 h-5 text-orange-500" />
-                  </Button>
-                  <h1 className="text-orange-500 font-bold text-lg">
-                    Dynamite <span className="font-medium text-muted-foreground">BTS</span>
-                  </h1>
-                  <div className="w-6" /> {/* 정렬 맞추기 위한 placeholder */}
-                </div>
+        <div className="w-full flex items-center justify-between px-4 py-3">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => navigate(-1)}
+            className="p-0 h-auto"
+          >
+            <ArrowLeft className="w-5 h-5 text-orange-500" />
+          </Button>
+          <h1 className="text-orange-500 font-bold text-lg">
+            Dynamite{" "}
+            <span className="font-medium text-muted-foreground">BTS</span>
+          </h1>
+          <div className="w-6" />
+        </div>
 
         {/* Instruction */}
         <div className="absolute w-[338px] top-[115px] left-[26px] font-extrabold text-[#444444] text-[31px] text-center tracking-[-0.30px] leading-10">
@@ -89,6 +98,11 @@ export default function LearnSentence() {
               {/* English */}
               <div className="w-[338px] font-extrabold text-[#444444] text-[37px] text-center tracking-[-0.30px] leading-10">
                 {currentSentence.english}
+              </div>
+
+              {/* IPA */}
+              <div className="w-[338px] font-medium text-[#888] text-[25px] text-center tracking-[-0.25px] leading-8 mt-2 italic">
+                {currentSentence.ipa}
               </div>
 
               {/* Korean */}
@@ -112,7 +126,7 @@ export default function LearnSentence() {
           </div>
         </div>
 
-        {/* NEXT 버튼 */}
+        {/* NEXT Button */}
         <Button
           onClick={handleNext}
           className="absolute w-[309px] h-[63px] top-[728px] left-[37px] bg-[#ffa55d] rounded-[50px] hover:bg-[#ffa55d] disabled:bg-gray-400"
