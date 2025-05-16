@@ -8,71 +8,23 @@ import { useNavigate } from "react-router-dom";
 import LineCarrot from "@/assets/line-carrot.svg";
 import ShadowCarrot from "@/assets/shadow-carrot.svg";
 
-function CheckBoxCustom({ checked, onToggle }) {
-  return (
-    <button
-      onClick={onToggle}
-      style={{
-        width: "25px",
-        aspectRatio: "1 / 1",
-        borderRadius: "4px",
-        border: `2px solid ${checked ? "#ffa55d" : "#c1c1c1"}`,
-        backgroundColor: checked ? "#ffa55d" : "#ffffff",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        lineHeight: 0,
-        padding: 0,
-      }}
-      className="mr-6"
-    >
-      {checked && (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="white"
-          strokeWidth="3"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          width="14"
-          height="14"
-          style={{ display: "block" }}
-        >
-          <polyline points="20 6 9 17 4 12" />
-        </svg>
-      )}
-    </button>
-  );
-}
-
 const wordPairs = [
-  { english: "morning", korean: "아침", ipa: "[ˈmɔːrnɪŋ]", checked: false },
-  { english: "kick", korean: "차다", ipa: "[kɪk]", checked: false },
-  { english: "walk", korean: "걷다", ipa: "[wɔːk]", checked: false },
-  { english: "top", korean: "꼭대기, 최고", ipa: "[tɑːp]", checked: false },
-  { english: "ping pong", korean: "탁구", ipa: "[ˈpɪŋ ˌpɒŋ]", checked: false },
-  { english: "heavy", korean: "무거운", ipa: "[ˈhɛvi]", checked: false },
-  { english: "ready", korean: "준비된", ipa: "[ˈrɛdi]", checked: false },
+  { english: "morning", korean: "아침", ipa: "[ˈmɔːrnɪŋ]" },
+  { english: "kick", korean: "차다", ipa: "[kɪk]" },
+  { english: "walk", korean: "걷다", ipa: "[wɔːk]" },
+  { english: "top", korean: "꼭대기, 최고", ipa: "[tɑːp]" },
+  { english: "ping pong", korean: "탁구", ipa: "[ˈpɪŋ ˌpɒŋ]" },
+  { english: "heavy", korean: "무거운", ipa: "[ˈhɛvi]" },
+  { english: "ready", korean: "준비된", ipa: "[ˈrɛdi]" },
 ];
 
 export default function Result() {
   const navigate = useNavigate();
   const [showSheet, setShowSheet] = useState(false);
-  const [pairs, setPairs] = useState(wordPairs);
-
   useEffect(() => {
     const timer = setTimeout(() => setShowSheet(true), 300);
     return () => clearTimeout(timer);
   }, []);
-
-  const handleCheck = (idx) => {
-    setPairs((prev) =>
-      prev.map((item, i) =>
-        i === idx ? { ...item, checked: !item.checked } : item
-      )
-    );
-  };
 
   return (
     <div className="min-h-screen w-full bg-[#ffeddf] flex items-center justify-center">
@@ -118,22 +70,16 @@ export default function Result() {
         <Card className="relative z-10 mt-6 mx-4 rounded-2xl bg-white pt-4 pb-4 shadow border-none overflow-visible">
           <CardContent className="p-0">
             <div className="max-h-[580px] overflow-y-auto px-4">
-              {pairs.map((pair, idx) => (
-                <div key={idx} className="flex items-start py-4 border-b border-gray-100 last:border-none">
-                  <CheckBoxCustom
-                    checked={pair.checked}
-                    onToggle={() => handleCheck(idx)}
-                  />
-                  <div>
-                    <div className="text-xl font-bold text-gray-800">
-                      {pair.english}
-                    </div>
-                    <div className="text-base text-gray-600 mt-1">
-                      {pair.korean}
-                    </div>
-                    <div className="text-sm text-gray-400 italic mt-0.5">
-                      {pair.ipa}
-                    </div>
+              {wordPairs.map((pair, idx) => (
+                <div key={idx} className="py-4 border-b border-gray-100 last:border-none">
+                  <div className="text-xl font-bold text-gray-800">
+                    {pair.english}
+                  </div>
+                  <div className="text-base text-gray-600 mt-1">
+                    {pair.korean}
+                  </div>
+                  <div className="text-sm text-gray-400 italic mt-0.5">
+                    {pair.ipa}
                   </div>
                 </div>
               ))}

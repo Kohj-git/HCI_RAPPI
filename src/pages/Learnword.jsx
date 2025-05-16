@@ -259,7 +259,8 @@ export default function LearnWord() {
         {/* Next button */}
         <Button
           onClick={handleNext}
-          className="absolute w-[309px] h-[63px] top-[772px] left-[37px] bg-[#ffa55d] rounded-[50px] hover:bg-[#ffa55d] disabled:bg-gray-400"
+          disabled={!spokenWord || similarity < 60}
+          className="absolute w-[309px] h-[63px] top-[772px] left-[37px] bg-[#ffa55d] rounded-[50px] hover:bg-[#ffa55d] disabled:bg-gray-400 disabled:cursor-not-allowed"
         >
           <span className="font-extrabold text-white text-[21px] text-center tracking-[-0.30px] leading-5">
             {currentIndex === sentences.length - 1 ? "DONE" : "NEXT"}

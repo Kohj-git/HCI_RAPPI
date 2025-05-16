@@ -258,7 +258,8 @@ export default function LearnSentence() {
         {/* NEXT Button */}
         <Button
           onClick={handleNext}
-          className="fixed w-[309px] h-[63px] bottom-4 left-1/2 -translate-x-1/2 bg-[#ffa55d] rounded-[50px] hover:bg-[#ffa55d] disabled:bg-gray-400"
+          disabled={!spokenSentence || similarity < 60}
+          className="fixed w-[309px] h-[63px] bottom-4 left-1/2 -translate-x-1/2 bg-[#ffa55d] rounded-[50px] hover:bg-[#ffa55d] disabled:bg-gray-400 disabled:cursor-not-allowed"
         >
           <span className="font-extrabold text-white text-[21px] text-center tracking-[-0.30px] leading-5">
             {currentIndex === sentences.length - 1 ? "DONE" : "NEXT"}
