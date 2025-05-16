@@ -47,12 +47,13 @@ function CheckBoxCustom({ checked, onToggle }) {
 }
 
 const wordPairs = [
-  { english: "Hello", korean: "안녕", checked: false },
-  { english: "World", korean: "세계", checked: false },
-  { english: "Love", korean: "사랑", checked: false },
-  { english: "Peace", korean: "평화", checked: false },
-  { english: "Dream", korean: "꿈", checked: false },
-  { english: "Hope", korean: "희망", checked: false },
+  { english: "morning", korean: "아침", ipa: "[ˈmɔːrnɪŋ]", checked: false },
+  { english: "kick", korean: "차다", ipa: "[kɪk]", checked: false },
+  { english: "walk", korean: "걷다", ipa: "[wɔːk]", checked: false },
+  { english: "top", korean: "꼭대기, 최고", ipa: "[tɑːp]", checked: false },
+  { english: "ping pong", korean: "탁구", ipa: "[ˈpɪŋ ˌpɒŋ]", checked: false },
+  { english: "heavy", korean: "무거운", ipa: "[ˈhɛvi]", checked: false },
+  { english: "ready", korean: "준비된", ipa: "[ˈrɛdi]", checked: false },
 ];
 
 export default function Result() {
@@ -116,20 +117,23 @@ export default function Result() {
         {/* Word List Card */}
         <Card className="relative z-10 mt-6 mx-4 rounded-2xl bg-white pt-4 pb-4 shadow border-none overflow-visible">
           <CardContent className="p-0">
-            <div className="max-h-[330px] overflow-y-auto pr-2">
+            <div className="max-h-[580px] overflow-y-auto px-4">
               {pairs.map((pair, idx) => (
-                <div key={idx} className="flex items-center px-4 py-3">
+                <div key={idx} className="flex items-start py-4 border-b border-gray-100 last:border-none">
                   <CheckBoxCustom
                     checked={pair.checked}
                     onToggle={() => handleCheck(idx)}
                   />
-                  <div className="flex-1 flex justify-between items-center">
-                    <span className="font-extrabold text-[#444444] text-2xl">
+                  <div>
+                    <div className="text-xl font-bold text-gray-800">
                       {pair.english}
-                    </span>
-                    <span className="font-semibold text-[#444444] text-xl">
+                    </div>
+                    <div className="text-base text-gray-600 mt-1">
                       {pair.korean}
-                    </span>
+                    </div>
+                    <div className="text-sm text-gray-400 italic mt-0.5">
+                      {pair.ipa}
+                    </div>
                   </div>
                 </div>
               ))}
