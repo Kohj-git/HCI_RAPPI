@@ -43,42 +43,35 @@ const MainPage = () => {
         </div>
 
         {/* Main Content */}
-        <div className="flex flex-col items-center justify-center mt-16">
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px]">
+        <div className="flex flex-col items-center justify-between h-[calc(100%-120px)]">
+          {/* Circle with Text */}
+          <div className="relative w-[350px] h-[350px] mt-20">
             <img 
               src={Ellipse} 
               alt="Circle" 
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
+              <h1 className="text-[32px] font-bold mb-2">Pick your level,</h1>
+              <h1 className="text-[32px] font-bold">Get your songs!</h1>
+              <img
+                src={Carrot}
+                alt="Three Carrots"
+                className="mt-4 w-16 mx-auto"
+              />
+            </div>
           </div>
 
-          <Card className="relative w-[350px] h-[350px] rounded-full border-0 shadow-none">
-            <CardContent className="flex flex-col items-center justify-center h-full p-0">
-              <div className="text-center">
-                <h1 className="font-extrabold text-3xl text-[#444444] tracking-[-0.30px] leading-[55px]">
-                  Pick your level,
-                  <br />
-                  Get your songs!
-                </h1>
-              </div>
-              <div className="flex items-end justify-center gap-4 mt-8">
-              <img src={Carrot} alt="Three Carrot" className="h-10 w-[71px]" />
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Button */}
-          <div className="absolute bottom-24 left-0 right-0 flex justify-center">
-            <Button 
-              className="w-[309px] h-[63px] bg-[#ffa55d] hover:bg-[#ff9a4a] rounded-[50px] font-extrabold text-2xl text-white"
-              onClick={() => navigate("/choose-level")}
-            >
-              Pick Level
-            </Button>
-            </div>
+          {/* Button */}
+          <Button 
+            className="w-[309px] h-[63px] bg-[#ffa55d] hover:bg-[#ff9a4a] rounded-[50px] font-extrabold text-2xl text-white mb-24"
+            onClick={() => navigate("/choose-level")}
+          >
+            Pick Level
+          </Button>
         </div>
       </div>
+    </div>
   );
 };
 

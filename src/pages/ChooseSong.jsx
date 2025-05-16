@@ -81,7 +81,7 @@ export default function ChooseSong() {
 
   const handleConfirm = () => {
     setShowModal(false);
-    navigate("/readytolearn-word");
+    navigate("/ready-to-learn-word");
   };
 
   return (

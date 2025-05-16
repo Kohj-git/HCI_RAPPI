@@ -106,27 +106,19 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        {/* 로그인 강제 이동 */}
-        <Route path="/" element={<Navigate to="/login" replace />} />
-
-        {/* 개별 페이지 */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/main" element={<Main />} />
+        <Route path="/" element={<Login />} />
         <Route path="/test" element={<Test />} />
-
-        {/* App.jsx에 있던 라우트들 */}
+        <Route path="/main" element={<MainPage />} />
         <Route path="/choose-level" element={<ChooseLevel />} />
         <Route path="/choose-song" element={<ChooseSong />} />
         <Route path="/result" element={<Result />} />
         <Route path="/learn-sentence" element={<LearnSentence />} />
         <Route path="/learn-word" element={<LearnWord />} />
-        <Route path="/readytolearn-sentence" element={<ReadyToLearnSentence />} />
-        <Route path="/readytolearn-word" element={<ReadyToLearnWord />} />
-        <Route path="/readyto-rap" element={<ReadyToRap />} />
+        <Route path="/ready-to-learn-sentence" element={<ReadyToLearnSentence />} />
+        <Route path="/ready-to-learn-word" element={<ReadyToLearnWord />} />
+        <Route path="/ready-to-rap" element={<ReadyToRap />} />
         <Route path="/start-rap" element={<StartRap />} />
-
-        {/* 그 외는 /login */}
-        <Route path="*" element={<Navigate to="/login" replace />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
   );

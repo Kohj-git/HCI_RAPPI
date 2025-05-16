@@ -170,7 +170,7 @@ export default function LearnWord() {
     if (currentIndex < sentences.length - 1) {
       setCurrentIndex(currentIndex + 1);
     } else {
-      navigate("/readytolearn-sentence");
+      navigate("/ready-to-learn-sentence");
     }
   };
 

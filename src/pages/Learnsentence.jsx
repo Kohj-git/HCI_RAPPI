@@ -169,7 +169,7 @@ export default function LearnSentence() {
     if (currentIndex < sentences.length - 1) {
       setCurrentIndex(currentIndex + 1);
     } else {
-      navigate("/readyto-rap");
+      navigate("/ready-to-rap");
     }
   };
 
