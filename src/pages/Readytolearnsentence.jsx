@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import Rabbit from "../assets/rabbit.svg";
 
 export default function ReadyToLearnSentence() {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ export default function ReadyToLearnSentence() {
     <div className="bg-[#ffeddf] flex flex-col items-center justify-between min-h-screen bg-peach px-6 py-0">
             <div className="w-[390px] h-[744px] flex flex-col justify-between px-6 py-8 bg-[#ffeddf]">
       <div className="w-full flex items-center justify-between">
-        <ArrowLeft className="text-orange-500 cursor-pointer" onClick={() => router.back()} />
+        <ArrowLeft className="text-orange-500 cursor-pointer" onClick={() => navigate(-1)} />
         <h1 className="text-orange-500 font-bold text-lg">Dynamite <span className="font-medium text-muted-foreground">BTS</span></h1>
         <div className="w-6" /> {/* Placeholder for alignment */}
       </div>
@@ -27,7 +28,7 @@ export default function ReadyToLearnSentence() {
 
         <div className="relative flex items-center justify-center">
           <motion.img 
-            src="/cleanbunny.png" 
+            src={Rabbit} 
             alt="clean bunny" 
             className="w-33 h-24"
             initial={{ scale: 0.8 }}
