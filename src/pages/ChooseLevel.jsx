@@ -73,9 +73,10 @@ export default function ChooseLevel() {
                   <div
                     className={
                       selectedLevel === level.id
-                        ? "w-[25px] h-[25px] rounded-[12.5px] border-[6px] border-solid border-[#ffa55d]"
-                        : "w-[25px] h-[25px] rounded-[12.5px] border border-solid border-[#c1c1c1]"
+                        ? "w-[25px] h-[25px] rounded-[12.5px] border-[6px] border-solid border-[#ffa55d] cursor-pointer"
+                        : "w-[25px] h-[25px] rounded-[12.5px] border border-solid border-[#c1c1c1] cursor-pointer"
                     }
+                    onClick={() => setSelectedLevel(level.id)}
                   >
                     <RadioGroupItem
                       value={level.id}
