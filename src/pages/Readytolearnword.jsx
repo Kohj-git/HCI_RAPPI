@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import Rabbit from "@/assets/rabbit.svg";
 
 export default function ReadyToLearnWord() {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ export default function ReadyToLearnWord() {
 
         <div className="relative flex items-center justify-center">
           <motion.img 
-            src="/cleanbunny.png" 
+            src={Rabbit} 
             alt="clean bunny" 
             className="w-33 h-24"
             initial={{ scale: 0.8 }}
