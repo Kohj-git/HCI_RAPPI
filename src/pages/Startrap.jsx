@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import audioFile from "../assets/dynamite.mp3";
 
 const lyrics = [
   "This is getting heavy",
@@ -24,16 +25,47 @@ export default function LyricsPage() {
   const audioRef = useRef(null);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      const currentTime = audioRef.current?.currentTime || 0;
-      for (let i = timings.length - 1; i >= 0; i--) {
-        if (currentTime >= timings[i]) {
-          setCurrentLine(i);
-          break;
+    if (!audioRef.current) return;
+
+    const audio = audioRef.current;
+    let interval;
+
+    const handlePlay = () => {
+      // 재생 시작할 때 가사 표시 타이머 시작
+      interval = setInterval(() => {
+        const currentTime = audio.currentTime;
+        for (let i = timings.length - 1; i >= 0; i--) {
+          if (currentTime >= timings[i]) {
+            setCurrentLine(i);
+            break;
+          }
         }
-      }
-    }, 300);
-    return () => clearInterval(interval);
+      }, 100);
+    };
+
+    const handlePause = () => {
+      // 재생 정지할 때 타이머 정지
+      clearInterval(interval);
+    };
+
+    const handleEnded = () => {
+      // 재생 끝날 때 타이머 정지
+      clearInterval(interval);
+      setCurrentLine(0);
+    };
+
+    // 이벤트 리스너 등록
+    audio.addEventListener('play', handlePlay);
+    audio.addEventListener('pause', handlePause);
+    audio.addEventListener('ended', handleEnded);
+
+    return () => {
+      // 컴포넌트 언마운트 시 정리
+      clearInterval(interval);
+      audio.removeEventListener('play', handlePlay);
+      audio.removeEventListener('pause', handlePause);
+      audio.removeEventListener('ended', handleEnded);
+    };
   }, []);
 
   return (
@@ -41,7 +73,7 @@ export default function LyricsPage() {
       
       {/* 헤더 */}
       <div className="flex items-center justify-between px-4 py-3">
-        <Button variant="ghost" size="icon" onClick={() => router.back()}>
+        <Button variant="ghost" size="icon" onClick={() => navigate(-1)}>
           <ArrowLeft className="text-orange-400" />
         </Button>
         <div className="text-orange-400 font-bold text-lg">
@@ -91,9 +123,13 @@ export default function LyricsPage() {
       
 
       {/* 오디오 플레이어 */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
-        <audio ref={audioRef} controls>
-          <source src="/audio/dynamite.mp3" type="audio/mp3" />
+      <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 z-20 w-[80%]">
+        <audio 
+          ref={audioRef} 
+          controls 
+          className="w-full"
+          src={audioFile}
+        >
           Your browser does not support the audio element.
         </audio>
       </div>
