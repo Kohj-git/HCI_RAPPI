@@ -134,7 +134,7 @@ export default function LyricsPage() {
         </audio>
       </div>
 
-      <Button onClick={() => navigate("/result")} className="w-full max-w-md text-lg py-6 rounded-full bg-orange-400 hover:bg-orange-500">
+      <Button onClick={() => navigate("/real-rap")} className="w-full max-w-md text-lg py-6 rounded-full bg-orange-400 hover:bg-orange-500">
               Complete!
             </Button>
     </div>

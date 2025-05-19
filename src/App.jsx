@@ -23,6 +23,7 @@ import ReadyToLearnSentence from './pages/ReadyToLearnSentence';
 import ReadyToLearnWord from './pages/ReadyToLearnWord';
 import ReadyToRap from './pages/ReadyToRap';
 import StartRap from './pages/StartRap';
+import RealRap from './pages/RealRap';
 
 // 녹음 + 재생 기능을 담당할 Main 컴포넌트
 function Main() {
@@ -118,6 +119,7 @@ export default function App() {
         <Route path="/ready-to-learn-word" element={<ReadyToLearnWord />} />
         <Route path="/ready-to-rap" element={<ReadyToRap />} />
         <Route path="/start-rap" element={<StartRap />} />
+        <Route path="/real-rap" element={<RealRap />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
