@@ -92,7 +92,7 @@ export default function ChooseLevel() {
       </div>
 
     {/* Description Bubble and Character */}
-      <div className="relative mt-8 px-5">
+      <div className="relative mt-2 px-5">
         <div className="relative">
           {/* Speech Bubble with SVG */}
           <div className="relative w-full">
@@ -102,10 +102,9 @@ export default function ChooseLevel() {
               className="w-full"
             />
             {/* Text overlay */}
-            <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center">
-              <p className="font-semibold text-[#444444] text-base leading-[25px] px-8 py-6">
-                In this level, you'll start getting the rhythm and flow of
-                English!
+            <div className="absolute top-0 left-0 right-0 bottom-0 flex items-start justify-center pt-8">
+              <p className="font-semibold text-[#444444] text-base leading-[25px] px-4 text-center">
+                In this level, you'll start getting the rhythm and flow of English!
                 <br />
                 Sing along, practice often, and you'll go far!
               </p>
@@ -113,7 +112,7 @@ export default function ChooseLevel() {
           </div>
 
           {/* Rabbit Character */}
-          <div className="absolute bottom-[-80px] right-[20px] w-[150px] h-[150px]">
+          <div className="absolute bottom-[-30px] right-[20px] w-[100px] h-[100px]">
             <div className="relative">
               {/* This would be the rabbit character - using a placeholder */}
               <img
@@ -127,7 +126,7 @@ export default function ChooseLevel() {
       </div>
 
       {/* Continue Button */}
-      <div className="absolute bottom-[50px] left-0 right-0 px-5">
+      <div className="absolute bottom-[120px] left-0 right-0 px-5">
         <Button className="w-full h-[63px] bg-[#ffa55d] hover:bg-[#ff9540] rounded-[50px]"
             onClick={() => navigate("/choose-song")}
             >
