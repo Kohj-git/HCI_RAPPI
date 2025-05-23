@@ -163,7 +163,7 @@ export default function ChooseSong() {
       </div>
 
       {/* SELECT Button */}
-      <div className="absolute bottom-[50px] left-0 right-0 px-5">
+      <div className="absolute bottom-[160px] left-0 right-0 px-5">
         <Button
           className="w-full h-[63px] bg-[#ffa55d] hover:bg-[#ff9540] rounded-[50px]"
           onClick={handleSelect}
