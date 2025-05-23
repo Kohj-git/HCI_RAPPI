@@ -63,12 +63,14 @@ const MainPage = () => {
           </div>
 
           {/* Button */}
-          <Button 
-            className="w-[309px] h-[63px] bg-[#ffa55d] hover:bg-[#ff9a4a] rounded-[50px] font-extrabold text-2xl text-white mb-24"
-            onClick={() => navigate("/choose-level")}
-          >
+          <div className="absolute bottom-[120px] left-0 right-0 px-5">
+            <Button 
+              className="w-full h-[63px] bg-[#ffa55d] hover:bg-[#ff9a4a] rounded-[50px] font-extrabold text-2xl text-white"
+              onClick={() => navigate("/choose-level")}
+            >
             Pick Level
-          </Button>
+            </Button>
+          </div>
         </div>
       </div>
     </div>

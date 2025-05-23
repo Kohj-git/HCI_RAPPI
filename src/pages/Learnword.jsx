@@ -197,12 +197,12 @@ export default function LearnWord() {
         </div>
 
         {/* Title */}
-        <div className="absolute w-[338px] top-[115px] left-[26px] font-extrabold text-[#444444] text-[31px] text-center tracking-[-0.30px] leading-10">
+        <div className="absolute w-[338px] top-[80px] left-[26px] font-extrabold text-[#444444] text-[31px] text-center tracking-[-0.30px] leading-10">
           Repeat after me!
         </div>
 
         {/* Card */}
-        <div className="absolute w-[360px] top-[186px] left-4">
+        <div className="absolute w-[360px] top-[80px] left-4">
           <Card className="absolute w-[360px] h-[361px] top-[34px] left-0 rounded-[20px] border-none shadow-none">
             <CardContent className="p-0 flex flex-col items-center justify-between h-full pt-14 pb-6">
               {/* English word */}
@@ -224,7 +224,7 @@ export default function LearnWord() {
               <Button 
                 onClick={startSpeechRecognition}
                 disabled={isRecording}
-                className={`w-[70px] h-[70px] ${isRecording ? 'bg-red-500' : 'bg-[#ffa55d]'} rounded-[20px] shadow-[0px_4px_4px_#00000040] mt-6 flex items-center justify-center hover:${isRecording ? 'bg-red-600' : 'bg-[#ff9540]'}`}
+                className={`w-[70px] h-[70px] ${isRecording ? 'bg-red-500' : 'bg-[#ffa55d]'} rounded-[20px] shadow-[0px_4px_4px_#00000040] mt-2 flex items-center justify-center hover:${isRecording ? 'bg-red-600' : 'bg-[#ff9540]'}`}
               >
                 <Mic className="w-[46px] h-[41px] text-white" />
               </Button>
@@ -234,7 +234,7 @@ export default function LearnWord() {
 
         {/* Feedback message */}
         {feedback && (
-          <div className="absolute w-[360px] top-[600px] left-4">
+          <div className="absolute w-[360px] top-[480px] left-4">
             <Card className="rounded-[20px] border-none shadow-md bg-white">
               <CardContent className="p-6">
                 <div className="flex flex-col items-center gap-2">
@@ -260,7 +260,7 @@ export default function LearnWord() {
         <Button
           onClick={handleNext}
           disabled={!spokenWord || similarity < 60}
-          className="absolute w-[309px] h-[63px] top-[772px] left-[37px] bg-[#ffa55d] rounded-[50px] hover:bg-[#ffa55d] disabled:bg-gray-400 disabled:cursor-not-allowed"
+          className="absolute w-[309px] h-[63px] top-[650px] left-[37px] bg-[#ffa55d] rounded-[50px] hover:bg-[#ffa55d] disabled:bg-gray-400 disabled:cursor-not-allowed"
         >
           <span className="font-extrabold text-white text-[21px] text-center tracking-[-0.30px] leading-5">
             {currentIndex === sentences.length - 1 ? "DONE" : "NEXT"}
