@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowLeft, Check, Mic, Volume2 } from "lucide-react";
+import { ArrowLeft, Check, Mic, Volume2, Square } from "lucide-react";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -76,6 +76,7 @@ export default function LearnSentence() {
   const [feedbackType, setFeedbackType] = useState("none"); // 'success' | 'warning' | 'error' | 'none'
   const [similarity, setSimilarity] = useState(0);
   const [spokenSentence, setSpokenSentence] = useState("");
+  const [recognition, setRecognition] = useState(null);
 
   // 레벤시타인 거리 계산 함수
   const calculateLevenshteinDistance = (a, b) => {
@@ -125,18 +126,18 @@ export default function LearnSentence() {
     }
 
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    const recognition = new SpeechRecognition();
-    recognition.lang = 'en-US';
-    recognition.interimResults = false;
-    recognition.maxAlternatives = 1;
+    const newRecognition = new SpeechRecognition();
+    newRecognition.lang = 'en-US';
+    newRecognition.interimResults = false;
+    newRecognition.maxAlternatives = 1;
 
-    recognition.onstart = () => {
+    newRecognition.onstart = () => {
       setIsRecording(true);
       setFeedback("");
       setFeedbackType("none");
     };
 
-    recognition.onresult = (event) => {
+    newRecognition.onresult = (event) => {
       const speechResult = event.results[0][0].transcript.toLowerCase();
       const correctSentence = currentSentence.english.toLowerCase();
       
@@ -163,16 +164,17 @@ export default function LearnSentence() {
       setSimilarity(similarity);
     };
 
-    recognition.onerror = (event) => {
+    newRecognition.onerror = (event) => {
       console.error('Speech recognition error:', event.error);
       setIsRecording(false);
     };
 
-    recognition.onend = () => {
+    newRecognition.onend = () => {
       setIsRecording(false);
     };
 
-    recognition.start();
+    newRecognition.start();
+    setRecognition(newRecognition);
   };
 
   const handleNext = () => {
@@ -243,14 +245,32 @@ export default function LearnSentence() {
                 {currentSentence.korean}
               </div>
 
-              {/* Mic Button */}
-              <Button 
-                onClick={startSpeechRecognition}
-                disabled={isRecording}
-                className={`w-[70px] h-[70px] ${isRecording ? 'bg-red-500' : 'bg-[#ffa55d]'} rounded-[20px] shadow-[0px_4px_4px_#00000040] mt-6 flex items-center justify-center hover:${isRecording ? 'bg-red-600' : 'bg-[#ff9540]'}`}
-              >
-                <Mic className="w-[46px] h-[41px] text-white" />
-              </Button>
+              {/* Recording controls */}
+              <div className="flex gap-4 mt-6">
+                {/* Mic button */}
+                <Button 
+                  onClick={startSpeechRecognition}
+                  disabled={isRecording}
+                  className={`w-[70px] h-[70px] ${isRecording ? 'bg-red-500' : 'bg-[#ffa55d]'} rounded-[20px] shadow-[0px_4px_4px_#00000040] flex items-center justify-center hover:${isRecording ? 'bg-red-600' : 'bg-[#ff9540]'}`}
+                >
+                  <Mic className="w-[46px] h-[41px] text-white" />
+                </Button>
+
+                {/* Stop button - only shown when recording */}
+                {isRecording && (
+                  <Button 
+                    onClick={() => {
+                      if (recognition) {
+                        recognition.stop();
+                        setRecognition(null);
+                      }
+                    }}
+                    className="w-[70px] h-[70px] bg-gray-500 hover:bg-gray-600 rounded-[20px] shadow-[0px_4px_4px_#00000040] flex items-center justify-center"
+                  >
+                    <Square className="w-[30px] h-[30px] text-white" />
+                  </Button>
+                )}
+              </div>
             </CardContent>
           </Card>
         </div>
