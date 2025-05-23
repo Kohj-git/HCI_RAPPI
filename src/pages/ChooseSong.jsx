@@ -101,16 +101,20 @@ export default function ChooseSong() {
       </div>
 
       {/* Header */}
-      <div className="items-center mt-1 px-5">
-        <Button
-          variant="ghost"
-          size="icon"
-          className="p-0 h-auto"
-          onClick={() => navigate(-1)}
-        >
-          <ChevronLeft className="h-[30px] w-[30px] text-[#ffa55d]" />
-        </Button>
-        <img src={RappiLogo} alt="Rappi Logo" className="h-7 w-[71px] ml-2" />
+      <div className="mt-1 px-5">
+        <div className="relative flex items-center justify-center">
+          <div className="absolute left-0">
+            <img src={RappiLogo} alt="Rappi Logo" className="h-7 w-[71px]" />
+          </div>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="p-0 h-auto"
+            onClick={() => navigate(-1)}
+          >
+            <ChevronLeft className="h-[30px] w-[30px] text-[#ffa55d]" />
+          </Button>
+        </div>
       </div>
 
       {/* Title */}

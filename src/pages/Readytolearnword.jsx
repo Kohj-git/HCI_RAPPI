@@ -13,7 +13,14 @@ export default function ReadyToLearnWord() {
     <div className="bg-[#ffeddf] flex flex-col items-center justify-between min-h-screen bg-peach px-6 py-0">
       <div className="w-[390px] h-[744px] flex flex-col justify-between px-6 py-8 bg-[#ffeddf]">
       <div className="w-full flex items-center justify-between">
-        <ArrowLeft className="text-orange-500" />
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={() => navigate(-1)}
+          className="p-0 h-auto"
+        >
+          <ArrowLeft className="text-orange-500" />
+        </Button>
         <h1 className="text-orange-500 font-bold text-lg">Dynamite <span className="font-medium text-muted-foreground">BTS</span></h1>
         <div className="w-6" /> {/* Placeholder for alignment */}
       </div>

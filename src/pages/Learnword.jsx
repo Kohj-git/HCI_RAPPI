@@ -225,7 +225,7 @@ export default function LearnWord() {
                 </div>
                 <Button
                   onClick={() => new Audio(currentSentence.audio).play()}
-                  className="w-[40px] h-[40px] bg-[#A78BFA] rounded-[10px] shadow-[0px_4px_4px_#00000040] flex items-center justify-center hover:bg-[#9F7AFA] p-0"
+                  className="w-[40px] h-[40px] bg-[#F97316] rounded-[10px] shadow-[0px_4px_4px_#00000040] flex items-center justify-center hover:bg-[#ea580c] p-0"
                 >
                   <Volume2 className="w-6 h-6 text-white" />
                 </Button>
