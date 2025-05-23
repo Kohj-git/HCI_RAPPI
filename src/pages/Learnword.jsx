@@ -2,7 +2,13 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowLeft, Check, Mic } from "lucide-react";
+import { ArrowLeft, Check, Mic, Volume2, Square } from "lucide-react";
+import morningAudio from '../assets/morning.mp3';
+import walkAudio from '../assets/walk.mp3';
+import topAudio from '../assets/top.mp3';
+import pingpongAudio from '../assets/pingpong.mp3';
+import heavyAudio from '../assets/heavy.mp3';
+import readyAudio from '../assets/ready.mp3';
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -16,36 +22,42 @@ export default function LearnWord() {
       korean: "아침",
       pronunciation: "[ˈmɔːrnɪŋ]",
       feedback: "Great job!",
+      audio: morningAudio,
     },
     {
       english: "walk",
       korean: "걷다",
       pronunciation: "[wɔːk]",
       feedback: "Keep it up!",
+      audio: walkAudio,
     },
     {
       english: "top",
       korean: "꼭대기, 최고",
       pronunciation: "[tɑːp]",
       feedback: "Cool~~",
+      audio: topAudio,
     },
     {
       english: "ping pong",
       korean: "탁구",
       pronunciation: "[ˈpɪŋ ˌpɒŋ]",
       feedback: "Great!",
+      audio: pingpongAudio,
     },
     {
       english: "heavy",
       korean: "무거운",
       pronunciation: "[ˈhɛvi]",
       feedback: "Very good",
+      audio: heavyAudio,
     },
     {
       english: "ready",
       korean: "준비된",
       pronunciation: "[ˈrɛdi]",
       feedback: "Awesome",
+      audio: readyAudio,
     },
   ];
 
@@ -55,6 +67,7 @@ export default function LearnWord() {
   const [feedbackType, setFeedbackType] = useState("none"); // 'success' | 'warning' | 'error' | 'none'
   const [similarity, setSimilarity] = useState(0);
   const [spokenWord, setSpokenWord] = useState("");
+  const [recognition, setRecognition] = useState(null);
 
   // 레벤시타인 거리 계산 함수
   const calculateLevenshteinDistance = (a, b) => {
@@ -104,18 +117,18 @@ export default function LearnWord() {
     }
 
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    const recognition = new SpeechRecognition();
-    recognition.lang = 'en-US';
-    recognition.interimResults = false;
-    recognition.maxAlternatives = 1;
+    const newRecognition = new SpeechRecognition();
+    newRecognition.lang = 'en-US';
+    newRecognition.interimResults = false;
+    newRecognition.maxAlternatives = 1;
 
-    recognition.onstart = () => {
+    newRecognition.onstart = () => {
       setIsRecording(true);
       setFeedback("");
       setFeedbackType("none");
     };
 
-    recognition.onresult = (event) => {
+    newRecognition.onresult = (event) => {
       const speechResult = event.results[0][0].transcript.toLowerCase();
       const correctWord = sentences[currentIndex].english.toLowerCase();
       
@@ -142,16 +155,17 @@ export default function LearnWord() {
       setSimilarity(similarity);
     };
 
-    recognition.onerror = (event) => {
+    newRecognition.onerror = (event) => {
       console.error('Speech recognition error:', event.error);
       setIsRecording(false);
     };
 
-    recognition.onend = () => {
+    newRecognition.onend = () => {
       setIsRecording(false);
     };
 
-    recognition.start();
+    newRecognition.start();
+    setRecognition(newRecognition);
   };
 
   const handleNext = () => {
@@ -204,9 +218,17 @@ export default function LearnWord() {
                 {currentSentence.english}
               </div>
 
-              {/* IPA pronunciation */}
-              <div className="w-[338px] font-medium text-[#666666] text-[30px] text-center tracking-[-0.2px] mt-1">
-                {currentSentence.pronunciation}
+              {/* IPA pronunciation and play button */}
+              <div className="flex items-center justify-center gap-3 mt-1">
+                <div className="font-medium text-[#666666] text-[30px] tracking-[-0.2px]">
+                  {currentSentence.pronunciation}
+                </div>
+                <Button
+                  onClick={() => new Audio(currentSentence.audio).play()}
+                  className="w-[40px] h-[40px] bg-[#A78BFA] rounded-[10px] shadow-[0px_4px_4px_#00000040] flex items-center justify-center hover:bg-[#9F7AFA] p-0"
+                >
+                  <Volume2 className="w-6 h-6 text-white" />
+                </Button>
               </div>
 
               {/* Korean meaning */}
@@ -214,14 +236,32 @@ export default function LearnWord() {
                 {currentSentence.korean}
               </div>
 
-              {/* Mic button */}
-              <Button 
-                onClick={startSpeechRecognition}
-                disabled={isRecording}
-                className={`w-[70px] h-[70px] ${isRecording ? 'bg-red-500' : 'bg-[#ffa55d]'} rounded-[20px] shadow-[0px_4px_4px_#00000040] mt-2 flex items-center justify-center hover:${isRecording ? 'bg-red-600' : 'bg-[#ff9540]'}`}
-              >
-                <Mic className="w-[46px] h-[41px] text-white" />
-              </Button>
+              {/* Recording controls */}
+              <div className="flex gap-4 mt-4">
+                {/* Mic button */}
+                <Button 
+                  onClick={startSpeechRecognition}
+                  disabled={isRecording}
+                  className={`w-[70px] h-[70px] ${isRecording ? 'bg-red-500' : 'bg-[#ffa55d]'} rounded-[20px] shadow-[0px_4px_4px_#00000040] flex items-center justify-center hover:${isRecording ? 'bg-red-600' : 'bg-[#ff9540]'}`}
+                >
+                  <Mic className="w-[46px] h-[41px] text-white" />
+                </Button>
+
+                {/* Stop button - only shown when recording */}
+                {isRecording && (
+                  <Button 
+                    onClick={() => {
+                      if (recognition) {
+                        recognition.stop();
+                        setRecognition(null);
+                      }
+                    }}
+                    className="w-[70px] h-[70px] bg-gray-500 hover:bg-gray-600 rounded-[20px] shadow-[0px_4px_4px_#00000040] flex items-center justify-center"
+                  >
+                    <Square className="w-[30px] h-[30px] text-white" />
+                  </Button>
+                )}
+              </div>
             </CardContent>
           </Card>
         </div>
