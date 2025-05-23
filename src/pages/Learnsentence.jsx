@@ -2,55 +2,71 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowLeft, Check, Mic } from "lucide-react";
+import { ArrowLeft, Check, Mic, Volume2 } from "lucide-react";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+// 오디오 파일 import
+import getupAudio from '../assets/audio/getupinthemorning.mp3';
+import letsrockAudio from '../assets/audio/letsrockandroll.mp3';
+import kickAudio from '../assets/audio/kickthedrum.mp3';
+import rollingAudio from '../assets/audio/dynamite_mr.mp3'; // 대체 오디오
+import callmeAudio from '../assets/audio/callme.mp3';
+import lifeisAudio from '../assets/audio/lifeissweet.mp3';
+import imgoodAudio from '../assets/audio/imgood.mp3';
 
 export default function LearnSentence() {
   const navigate = useNavigate();
 
   const sentences = [
     {
-      english: "get up (in the morning).",
+      english: "get up in the morning.",
       korean: "(아침에) 일어나다.",
       ipa: "[ɡɛt ʌp ɪn ðə ˈmɔːrnɪŋ]",
       feedback: "Great job!",
+      audio: getupAudio,
     },
     {
       english: "Let's rock and roll!",
       korean: "자 신나게 시작하자.",
       ipa: "[lɛts rɑk ənd roʊl]",
       feedback: "Awesome!",
+      audio: letsrockAudio,
     },
     {
       english: "Kick the drum",
       korean: "(비유 표현) 분위기를 띄우다",
       ipa: "[kɪk ðə drʌm]",
       feedback: "Keep it up!",
+      audio: kickAudio,
     },
     {
       english: "rolling on like a rolling stone",
       korean: "계속해서 나아간다",
       ipa: "[ˈroʊlɪŋ ɑn laɪk ə ˈroʊlɪŋ stoʊn]",
       feedback: "Cool~~",
+      audio: rollingAudio,
     },
     {
       english: "Call me on my phone",
       korean: "내 휴대폰으로 전화해",
       ipa: "[kɔːl mi ɑn maɪ foʊn]",
       feedback: "Great!",
+      audio: callmeAudio,
     },
     {
       english: "Life is sweet as honey",
       korean: "인생은 꿀처럼 달콤해",
       ipa: "[laɪf ɪz swiːt æz ˈhʌni]",
       feedback: "Very good",
+      audio: lifeisAudio,
     },
     {
       english: "I'm good to go",
       korean: "나 이제 갈 준비 됐어",
       ipa: "[aɪm ɡʊd tə ɡoʊ]",
       feedback: "Awesome",
+      audio: imgoodAudio,
     },
   ];
 
@@ -196,12 +212,12 @@ export default function LearnSentence() {
         </div>
 
         {/* Instruction */}
-        <div className="absolute w-[338px] top-[115px] left-[26px] font-extrabold text-[#444444] text-[31px] text-center tracking-[-0.30px] leading-10">
+        <div className="absolute w-[338px] top-[80px] left-[26px] font-extrabold text-[#444444] text-[31px] text-center tracking-[-0.30px] leading-10">
           Repeat after me!
         </div>
 
         {/* Card */}
-        <div className="absolute w-[360px] top-[186px] left-4">
+        <div className="absolute w-[360px] top-[80px] left-4">
           <Card className="absolute w-[360px] h-[361px] top-[34px] left-0 rounded-[20px] border-none shadow-none">
             <CardContent className="p-0 flex flex-col items-center justify-between h-full pt-14 pb-6">
               {/* English */}
@@ -209,9 +225,17 @@ export default function LearnSentence() {
                 {currentSentence.english}
               </div>
 
-              {/* IPA */}
-              <div className="w-[338px] font-medium text-[#888] text-[25px] text-center tracking-[-0.25px] leading-8 mt-2 italic">
-                {currentSentence.ipa}
+              {/* IPA and play button */}
+              <div className="flex items-center justify-center gap-3 mt-2">
+                <div className="font-medium text-[#888] text-[25px] tracking-[-0.25px] italic">
+                  {currentSentence.ipa}
+                </div>
+                <Button
+                  onClick={() => new Audio(currentSentence.audio).play()}
+                  className="w-[40px] h-[40px] bg-[#F97316] rounded-[10px] shadow-[0px_4px_4px_#00000040] flex items-center justify-center hover:bg-[#ea580c] p-0"
+                >
+                  <Volume2 className="w-6 h-6 text-white" />
+                </Button>
               </div>
 
               {/* Korean */}
@@ -233,7 +257,7 @@ export default function LearnSentence() {
 
         {/* Feedback */}
         {feedback && (
-          <div className="absolute w-[360px] top-[580px] left-4">
+          <div className="absolute w-[360px] top-[480px] left-4">
             <Card className="rounded-[20px] border-none shadow-md bg-white">
               <CardContent className="p-6">
                 <div className="flex flex-col items-center gap-2">
@@ -259,7 +283,7 @@ export default function LearnSentence() {
         <Button
           onClick={handleNext}
           disabled={!spokenSentence || similarity < 60}
-          className="fixed w-[309px] h-[63px] bottom-4 left-1/2 -translate-x-1/2 bg-[#ffa55d] rounded-[50px] hover:bg-[#ffa55d] disabled:bg-gray-400 disabled:cursor-not-allowed"
+          className="absolute w-[309px] h-[63px] top-[650px] left-[37px] bg-[#ffa55d] rounded-[50px] hover:bg-[#ffa55d] disabled:bg-gray-400 disabled:cursor-not-allowed"
         >
           <span className="font-extrabold text-white text-[21px] text-center tracking-[-0.30px] leading-5">
             {currentIndex === sentences.length - 1 ? "DONE" : "NEXT"}
