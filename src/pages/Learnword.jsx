@@ -18,12 +18,6 @@ export default function LearnWord() {
       feedback: "Great job!",
     },
     {
-      english: "kick",
-      korean: "차다",
-      pronunciation: "[kɪk]",
-      feedback: "Awesome!",
-    },
-    {
       english: "walk",
       korean: "걷다",
       pronunciation: "[wɔːk]",
