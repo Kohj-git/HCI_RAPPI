@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import getupAudio from '../assets/audio/getupinthemorning.mp3';
 import letsrockAudio from '../assets/audio/letsrockandroll.mp3';
 import kickAudio from '../assets/audio/kickthedrum.mp3';
-import rollingAudio from '../assets/audio/dynamite_mr.mp3'; // 대체 오디오
+import rollingAudio from '../assets/audio/rolling.mp3'; // 대체 오디오
 import callmeAudio from '../assets/audio/callme.mp3';
 import lifeisAudio from '../assets/audio/lifeissweet.mp3';
 import imgoodAudio from '../assets/audio/imgood.mp3';
