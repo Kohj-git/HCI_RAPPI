@@ -10,7 +10,6 @@ import ShadowCarrot from "@/assets/shadow-carrot.svg";
 
 const wordPairs = [
   { english: "morning", korean: "아침", ipa: "[ˈmɔːrnɪŋ]" },
-  { english: "kick", korean: "차다", ipa: "[kɪk]" },
   { english: "walk", korean: "걷다", ipa: "[wɔːk]" },
   { english: "top", korean: "꼭대기, 최고", ipa: "[tɑːp]" },
   { english: "ping pong", korean: "탁구", ipa: "[ˈpɪŋ ˌpɒŋ]" },
@@ -28,7 +27,7 @@ export default function Result() {
 
   return (
     <div className="min-h-screen w-full bg-[#ffeddf] flex items-center justify-center">
-      <div className="relative w-full max-w-[390px] min-h-screen bg-[#ffeddf] flex flex-col mx-auto overflow-visible">
+      <div className="relative w-full max-w-[390px] h-screen bg-[#ffeddf] flex flex-col mx-auto">
         {/* Status Bar */}
         <div className="w-full h-[47px] flex items-center justify-between px-5">
           <div className="font-semibold text-[14.2px] tracking-[-0.30px]">
@@ -57,28 +56,25 @@ export default function Result() {
         </div>
 
         {/* Title */}
-        <div className="mt-4 mb-2 text-center z-20 relative">
-          <div className="font-extrabold text-[#444444] text-[33px] tracking-[-0.30px] leading-[50px]">
+        <div className="mt-2 mb-1 text-center z-20 relative">
+          <div className="font-extrabold text-[#444444] text-[28px] tracking-[-0.30px] leading-[32px]">
             Review words
           </div>
-          <p className="mt-2 text-[16px] text-[#666] font-medium tracking-[-0.2px]">
-            Select the words you want to review!
-          </p>
         </div>
 
         {/* Word List Card */}
-        <Card className="relative z-10 mt-6 mx-4 rounded-2xl bg-white pt-4 pb-4 shadow border-none overflow-visible">
-          <CardContent className="p-0">
-            <div className="max-h-[580px] overflow-y-auto px-4">
+        <Card className="relative z-10 mt-2 mx-4 mb-16 rounded-2xl bg-white shadow border-none overflow-visible">
+          <CardContent className="p-7">
+            <div className="grid grid-cols-2 gap-3">
               {wordPairs.map((pair, idx) => (
-                <div key={idx} className="py-4 border-b border-gray-100 last:border-none">
-                  <div className="text-xl font-bold text-gray-800">
+                <div key={idx} className="bg-gray-50 rounded-lg p-5 shadow-sm">
+                  <div className="text-lg font-bold text-gray-800 text-center">
                     {pair.english}
                   </div>
-                  <div className="text-base text-gray-600 mt-1">
+                  <div className="text-base text-gray-600 mt-1.5 text-center">
                     {pair.korean}
                   </div>
-                  <div className="text-sm text-gray-400 italic mt-0.5">
+                  <div className="text-sm text-gray-400 italic mt-1.5 text-center">
                     {pair.ipa}
                   </div>
                 </div>
@@ -88,10 +84,10 @@ export default function Result() {
         </Card>
 
         {/* Bottom Button */}
-        <div className="flex justify-center mt-auto mb-[36px]">
+        <div className="flex justify-center mt-2">
           <Button
             onClick={() => navigate("/choose-level")}
-            className="w-[309px] h-[63px] bg-[#ffa55d] hover:bg-[#ff9a4a] rounded-[50px] text-white text-[22px] font-extrabold shadow"
+            className="w-[309px] h-[55px] bg-[#ffa55d] hover:bg-[#ff9a4a] rounded-[50px] text-white text-[20px] font-extrabold shadow"
           >
             Pick another song
           </Button>
@@ -105,7 +101,7 @@ export default function Result() {
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
               transition={{ type: "spring", bounce: 0.25, duration: 0.6 }}
-              className="fixed bottom-0 left-0 right-0 max-w-[390px] mx-auto bg-white rounded-t-[30px] shadow-lg z-50 px-6 pt-6 pb-10"
+              className="fixed bottom-0 left-0 right-0 max-w-[390px] mx-auto bg-white rounded-t-[30px] shadow-lg z-50 px-6 pt-4 pb-6"
             >
               <div className="w-12 h-1.5 bg-[#ccc] rounded-full mx-auto mb-4" />
               <div className="text-center">
